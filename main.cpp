@@ -12,8 +12,8 @@ ImageButton::ImageButton(QWidget *parent)
     setParent(parent);
     setToolTip("Стоп");
     setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    mButtonUpPixmap = QPixmap("/opt/off.png");
-    mButtonDownPixmap = QPixmap("/opt/on.jpg");
+    mButtonUpPixmap = QPixmap(":/off.png");
+    mButtonDownPixmap = QPixmap(":/on.jpg");
     mCurrentButtonPixmap = mButtonUpPixmap;
     setGeometry(mCurrentButtonPixmap.rect());
     connect(this, &QPushButton::clicked, this, &ImageButton::setDown);

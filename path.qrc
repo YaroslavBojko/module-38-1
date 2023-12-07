@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>GreenCircle.png</file>
-        <file>RedCircle.png</file>
-        <file>YellowCircle.png</file>
+        <file>off.png</file>
+        <file>on.jpg</file>
     </qresource>
 </RCC>
