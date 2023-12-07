@@ -5,13 +5,14 @@
 #include <iostream>
 #include <QPainter>
 #include <QPaintEvent>
+#include <QTimer>
 
 ImageButton::ImageButton(QWidget *parent)
 {
     setParent(parent);
     setToolTip("Стоп");
     setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    mButtonUpPixmap = QPixmap("/opt/off.jpg");
+    mButtonUpPixmap = QPixmap("/opt/off.png");
     mButtonDownPixmap = QPixmap("/opt/on.jpg");
     mCurrentButtonPixmap = mButtonUpPixmap;
     setGeometry(mCurrentButtonPixmap.rect());
@@ -43,6 +44,7 @@ void ImageButton::setDown()
 {
     mCurrentButtonPixmap = mButtonDownPixmap;
     update();
+    QTimer::singleShot(500, this, &ImageButton::setUp);
 }
 
 void ImageButton::setUp()
