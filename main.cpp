@@ -7,6 +7,7 @@
 #include <QPaintEvent>
 #include <QTimer>
 
+
 ImageButton::ImageButton(QWidget *parent)
 {
     setParent(parent);
@@ -14,8 +15,12 @@ ImageButton::ImageButton(QWidget *parent)
     setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     mButtonUpPixmap = QPixmap(":/off.png");
     mButtonDownPixmap = QPixmap(":/on.jpg");
+    buttonSound = QUrl("qrc:///click.mp3");
     mCurrentButtonPixmap = mButtonUpPixmap;
     setGeometry(mCurrentButtonPixmap.rect());
+    player = new QMediaPlayer();
+    player->setVolume(75);
+    player->setMedia(buttonSound);
     connect(this, &QPushButton::clicked, this, &ImageButton::setDown);
 }
 
@@ -42,6 +47,8 @@ void ImageButton::keyPressEvent(QKeyEvent *e)
 
 void ImageButton::setDown()
 {
+    player->stop();
+    player->play();
     mCurrentButtonPixmap = mButtonDownPixmap;
     update();
     QTimer::singleShot(500, this, &ImageButton::setUp);
@@ -59,7 +66,6 @@ int main(int argc, char **argv)
     ImageButton redButton(nullptr);
     redButton.setFixedSize(200, 200);
     redButton.move(1000, 400);
-    QObject::connect(&redButton, &QPushButton::clicked, [](){std::cout << "clicked\n";});
     redButton.show();
 
     return app.exec();

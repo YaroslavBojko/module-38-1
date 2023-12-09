@@ -5,6 +5,9 @@
 #include <QPushButton>
 #include <QPixmap>
 
+#include <QMediaPlayer>
+#include <QMediaContent>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -39,5 +42,6 @@ private:
     QPixmap mCurrentButtonPixmap;
     QPixmap mButtonDownPixmap;
     QPixmap mButtonUpPixmap;
-    bool isDown = false;
+    QMediaPlayer* player;
+    QMediaContent buttonSound;
 };
